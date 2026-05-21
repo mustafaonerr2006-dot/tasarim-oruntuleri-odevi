@@ -1,13 +1,27 @@
+class Urun:
+    def __init__(self, ad, fiyat):
+        self.ad = ad
+        self.fiyat = fiyat
+
+
+class UrunFabrikasi:
+    @staticmethod
+    def urun_olustur(ad, fiyat):
+        if fiyat < 0:
+            print("Ürün fiyatı negatif olamaz")
+            fiyat = 0
+        return Urun(ad, fiyat)
+
+
 class SepetUygulamasi:
     def __init__(self):
-        self.urun_adlari = []
-        self.urun_fiyatlari = []
+        self.urunler = []
         self.indirim_turu = "YOK"
         self.indirim_degeri = 0
 
     def urun_ekle(self, ad, fiyat):
-        self.urun_adlari.append(ad)
-        self.urun_fiyatlari.append(fiyat)
+        urun = UrunFabrikasi.urun_olustur(ad, fiyat)
+        self.urunler.append(urun)
 
     def indirim_sec(self, tur, deger):
         self.indirim_turu = tur
@@ -17,9 +31,9 @@ class SepetUygulamasi:
         toplam = 0
 
         print("--- Sepet ---")
-        for i in range(len(self.urun_adlari)):
-            print(self.urun_adlari[i], "-", self.urun_fiyatlari[i], "TL")
-            toplam = toplam + self.urun_fiyatlari[i]
+        for urun in self.urunler:
+            print(urun.ad, "-", urun.fiyat, "TL")
+            toplam = toplam + urun.fiyat
 
         print("Ara toplam:", toplam, "TL")
 

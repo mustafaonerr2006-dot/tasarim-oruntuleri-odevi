@@ -23,3 +23,19 @@ Bunun iyi yanı şu oldu: Birden fazla indirim üst üste uygulanabiliyor. Mesel
 Main tarafında artık detay sınıflarla çok uğraşmıyorum. Ürün ekleyip `normal_sepet_yazdir` veya `vip_sepet_yazdir` gibi metotları çağırıyorum.
 
 Facade burada kodu tamamen değiştirmedi ama kullanımını daha sade yaptı.
+
+## Faz 3 - Strategy
+
+Bu fazda kargo hesaplama kısmı için Strategy kullandım.
+
+Standart kargo, hızlı kargo ve mağazadan teslim farklı sınıflara ayrıldı. Sipariş yöneticisi hangi kargo türünün nasıl hesaplandığını bilmek zorunda kalmadı.
+
+OCP açısından iyi tarafı şu: yeni bir kargo türü eklemek istersem mevcut sipariş yöneticisini değiştirmek yerine yeni bir strateji sınıfı yazabilirim.
+
+## Faz 3 - Observer
+
+Sipariş oluşunca bazı yerlerin haberi olsun diye Observer mantığı kullandım.
+
+`KonsolDinleyici` sipariş bilgisini ekrana yazıyor. `SiparisSayacDinleyici` ise kaç sipariş oluştuğunu sayıyor.
+
+Böylece sipariş tamamlanınca yapılacak ek işlemler sipariş yöneticisinin içine gömülmedi. Yeni bir dinleyici eklenirse mevcut kodu fazla bozmak gerekmiyor.
